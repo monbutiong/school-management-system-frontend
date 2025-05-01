@@ -1,0 +1,64 @@
+/* Account.css */
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  transition: all 0.3s ease-in-out;
+  position: fixed;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.main-content {
+  margin-left: 250px;
+  transition: margin-left 0.3s ease-in-out;
+  width: 100%;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 80px;
+}
+
+.sidebar .nav-link {
+  font-size: 16px;
+  padding: 8px 12px;
+  color: #fff;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #495057;
+  border-radius: 5px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+}
+
+
+.employee-container {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  border-radius: 8px;
+}
+
+.custom-table {
+  background-color: #fdfdfd;
+  font-size: 0.9rem;
+}
+
+.search-input-group input {
+  width: 200px;
+}
+
+th, td {
+  vertical-align: middle !important;
+}
