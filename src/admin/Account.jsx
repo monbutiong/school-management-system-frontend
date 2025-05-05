@@ -16,6 +16,7 @@ import SchoolSubjects from './pages/SchoolSubjects';
 import SchoolBuildings from './pages/SchoolBuildings';
 import SchoolRooms from './pages/SchoolRooms';
 import SchoolClasses from './pages/SchoolClasses';
+import SchoolEnrollment from './pages/SchoolEnrollment';
 
 import Settings from './pages/Settings';
 
@@ -81,6 +82,7 @@ function Account() {
               {activePage === 'school_buildings' && <SchoolBuildings />}
               {activePage === 'school_rooms' && <SchoolRooms />}
               {activePage === 'school_classes' && <SchoolClasses />}
+              {activePage === 'school_enrollment' && <SchoolEnrollment />}
               {activePage === 'settings' && <Settings />}
             </>
           )}

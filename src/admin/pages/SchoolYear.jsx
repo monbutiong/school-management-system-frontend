@@ -24,10 +24,10 @@ function SchoolYears() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchData = async (page = 1) => {
+  const fetchData = async (page = 1, searchTerm = '') => {
     setLoading(true);
     try {
-      const res = await api.get(`/admin/school-year/list?page=${page}`);
+      const res = await api.get(`/admin/school-year/list?page=${page}&searchTerm=${searchTerm}`);
       setSchoolYears(res.data.data);
       setFiltered(res.data.data);
       setCurrentPage(res.data.currentPage);
@@ -41,11 +41,8 @@ function SchoolYears() {
 
   useEffect(() => { fetchData(); }, []);
   useEffect(() => {
-    const f = schoolYears.filter(yr =>
-      yr.school_year.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFiltered(f);
-  }, [searchTerm, schoolYears]);
+    fetchData(currentPage, searchTerm);
+  }, [searchTerm, currentPage]);
 
   const handleShowModal = (mode, item = null) => {
     setModalMode(mode);

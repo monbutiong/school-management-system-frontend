@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Nav, Button } from 'react-bootstrap';
-import { House, Gear, BoxArrowRight, List, People, PersonCheck, Calendar4Range, Layers, Journal, Columns, JournalText, Bank, LayoutWtf, PeopleFill  } from 'react-bootstrap-icons';
+import { House, Gear, BoxArrowRight, List, People, PersonCheck, Calendar4Range, Layers, Journal, Columns, JournalText, Bank, LayoutWtf, PeopleFill, PersonPlusFill  } from 'react-bootstrap-icons';
 
 function Sidebar({ collapsed, setCollapsed, activePage, handleMenuClick, handleLogout }) {
   return (
@@ -87,6 +87,13 @@ function Sidebar({ collapsed, setCollapsed, activePage, handleMenuClick, handleL
         >
           <PeopleFill size={20} className="me-2" />
           {!collapsed && 'Classes'}
+        </Nav.Link>
+        <Nav.Link
+          onClick={() => handleMenuClick('school_enrollment')}
+          className={`text-white d-flex align-items-center mb-2 ${activePage === 'school_enrollment' ? 'active bg-secondary' : ''}`}
+        >
+          <PersonPlusFill size={20} className="me-2" />
+          {!collapsed && 'Enrollment'}
         </Nav.Link>
         <Nav.Link
           onClick={() => handleMenuClick('settings')}

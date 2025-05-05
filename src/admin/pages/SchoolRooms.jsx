@@ -23,10 +23,10 @@ function SchoolRooms() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchData = async (page = 1) => {
+  const fetchData = async (page = 1, searchTerm = '') => {
     setLoading(true);
     try {
-      const res = await api.get(`/admin/school-room/list?page=${page}`);
+      const res = await api.get(`/admin/school-room/list?page=${page}&searchTerm=${searchTerm}`);
       setRooms(res.data.data);
       setFiltered(res.data.data);
       setCurrentPage(res.data.currentPage);
@@ -53,11 +53,8 @@ function SchoolRooms() {
   }, []);
 
   useEffect(() => {
-    const f = rooms.filter(room =>
-      room.room_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFiltered(f);
-  }, [searchTerm, rooms]);
+    fetchData(currentPage, searchTerm);
+  }, [searchTerm, currentPage]);
 
   const handleShowModal = (mode, item = null) => {
     setModalMode(mode);

@@ -32,10 +32,10 @@ function SchoolSubjects() {
     }
   };
 
-  const fetchSubjects = async (page = 1) => {
+  const fetchSubjects = async (page = 1, searchTerm = '') => {
     setLoading(true);
     try {
-      const res = await api.get(`/admin/school-subject/list?page=${page}`);
+      const res = await api.get(`/admin/school-subject/list?page=${page}&searchTerm=${searchTerm}`);
       setSubjects(res.data.data);
       setFiltered(res.data.data);
       setCurrentPage(res.data.currentPage);
@@ -53,11 +53,8 @@ function SchoolSubjects() {
   }, []);
 
   useEffect(() => {
-    const f = subjects.filter(s =>
-      s.subject_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFiltered(f);
-  }, [searchTerm, subjects]);
+    fetchSubjects(currentPage, searchTerm);
+  }, [searchTerm, currentPage]);
 
   const handleShowModal = (mode, item = null) => {
     setModalMode(mode);

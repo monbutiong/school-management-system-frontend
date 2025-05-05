@@ -21,10 +21,10 @@ function SchoolLevels() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchData = async (page = 1) => {
+  const fetchData = async (page = 1, searchTerm = '') => {
     setLoading(true);
     try {
-      const res = await api.get(`/admin/school-level/list?page=${page}`);
+      const res = await api.get(`/admin/school-level/list?page=${page}&searchTerm=${searchTerm}`);
       setLevels(res.data.data);
       setFiltered(res.data.data);
       setCurrentPage(res.data.currentPage);
@@ -38,11 +38,8 @@ function SchoolLevels() {
 
   useEffect(() => { fetchData(); }, []);
   useEffect(() => {
-    const f = levels.filter(level =>
-      level.level_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFiltered(f);
-  }, [searchTerm, levels]);
+    fetchData(currentPage, searchTerm);
+  }, [searchTerm, currentPage]);
 
   const handleShowModal = (mode, item = null) => {
     setModalMode(mode);
